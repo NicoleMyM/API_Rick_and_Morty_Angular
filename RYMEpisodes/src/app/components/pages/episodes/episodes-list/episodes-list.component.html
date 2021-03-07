@@ -1,0 +1,34 @@
+<div class="row" infinite-scroll (scrolled)="onScrollDown()" >
+    <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let episode of episodes">
+        <div class="card">
+            <div class="img">
+                <a [routerLink]="['/episodes-details', episode.id]">
+                    <img                       
+                        [src]="'https://rickandmortyapi.com/api/character/avatar/1.jpeg'"
+                        [alt]="episode.name"
+                        class="card-img-top"
+                    />                 
+                </a>
+            </div>
+            <div class="card-inner">
+                <div class="header">
+                    <a [routerLink]="['/episodes-details', episode.id]">
+                        <h3>{{episode.episode}}</h3>
+                    </a>
+                    <h4 class="text-muted">{{episode.name}}</h4>
+                    <small class="text-muted">{{episode.air_date}}</small>
+                </div>                   
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 mt-5 container-notFound" *ngIf="episodes.length < 1">
+        <p>No results ...</p>
+    </div>
+    
+</div>
+<button
+    [ngClass]="'no-hidden'"
+    *ngIf="showGoUpButton"
+    clas="btn btn-dark"
+    (click)="onScrollTop()"
+    >Go UP</button>
